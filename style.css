@@ -1,0 +1,23 @@
+/* ==================== */
+/* ESTILOS CUSTOMIZADOS */
+/* (apenas o que Tailwind não suporta inline) */
+/* ==================== */
+
+/* Header background image */
+.header-bg {
+  background-image: url("/assets/header-truck-image.jpg");
+}
+
+/* Carousel infinite scroll animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 24px));
+  }
+}
+
+.animate-scroll {
+  animation: scroll 25s linear infinite;
+}
