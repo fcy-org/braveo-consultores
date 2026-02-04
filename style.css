@@ -11,13 +11,16 @@
 /* Carousel infinite scroll animation */
 @keyframes scroll {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(calc(-50% - 24px));
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-scroll {
-  animation: scroll 25s linear infinite;
+  animation: scroll 60s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
