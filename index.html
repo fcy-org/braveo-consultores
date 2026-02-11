@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-5C4K23H3");
+    </script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -47,151 +61,274 @@
   </head>
 
   <body class="font-inter bg-dark text-white">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5C4K23H3"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- ==================== -->
     <!-- HEADER               -->
     <!-- ==================== -->
     <header
-      class="header-bg w-full h-screen bg-cover bg-center bg-fixed relative overflow-hidden"
+      class="header-bg w-full bg-cover bg-center bg-fixed relative overflow-hidden lg:min-h-screen"
     >
       <div
-        class="header-overlay absolute inset-0 bg-[#0d0a14]/[0.92] flex items-center"
+        class="header-overlay relative lg:absolute lg:inset-0 bg-[#0d0a14]/[0.92] flex flex-col py-10 lg:py-0"
       >
+        <!-- Conteúdo: texto + formulário lado a lado no desktop -->
         <div
-          class="header-content w-full px-6 py-8 md:p-12 lg:p-20 lg:max-w-[900px] 3xl:py-[100px] 3xl:px-[120px] 3xl:max-w-[1100px]"
+          class="flex-1 flex flex-col lg:flex-row lg:items-center lg:gap-12 px-4 md:px-12 lg:px-20 3xl:px-[120px]"
         >
-          <img
-            src="assets/braveo-logo.png"
-            alt="Braveo"
-            class="header-logo w-[180px] block mx-auto mb-8 md:w-60 md:mx-0 md:mb-10 lg:w-80 lg:mb-12 3xl:w-[380px]"
-          />
-
-          <h1
-            class="header-title text-white text-4xl font-extrabold leading-[1.15] mb-5 md:text-5xl md:mb-6 lg:text-6xl lg:mb-7 3xl:text-7xl"
+          <!-- Texto + Vídeo -->
+          <div
+            class="header-content flex-1 flex flex-col justify-center items-center text-center lg:items-start lg:text-left py-8"
           >
-            <span class="block">Lideramos a distribuição</span>
-            <span class="block">no Norte e Nordeste.</span>
-          </h1>
+            <img
+              src="assets/BRAVEO.svg"
+              alt="Braveo"
+              class="header-logo w-[120px] mb-3 md:w-44 md:mb-7 lg:w-52 lg:mb-8 3xl:w-60"
+            />
 
-          <p
-            class="header-subtitle text-white/85 text-base font-normal leading-relaxed md:text-lg lg:text-xl lg:max-w-[600px] 3xl:text-[1.375rem] 3xl:max-w-[700px]"
+            <h1
+              class="header-title text-white text-[1.625rem] font-extrabold leading-[1.2] mb-3 md:text-3xl md:mb-7 lg:text-[2.5rem] lg:mb-8 3xl:text-5xl"
+            >
+              <span class="block">Lideramos a distribuição</span>
+              <span class="block">Piauí e Maranhão.</span>
+            </h1>
+
+            <!-- Vídeo -->
+            <div
+              class="header-video relative w-full max-w-2xl aspect-video rounded-xl overflow-hidden bg-neutral-800 mb-3 md:mb-7 lg:mb-8"
+            >
+              <video
+                id="heroVideo"
+                src="assets/Video_Braveo_Som.mp4"
+                class="w-full h-full object-cover"
+                autoplay
+                muted
+                playsinline
+                disablepictureinpicture
+              ></video>
+              <div class="absolute bottom-3 right-3 flex gap-2">
+                <button
+                  id="btnPlayPause"
+                  class="w-9 h-9 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors cursor-pointer"
+                  aria-label="Pausar vídeo"
+                >
+                  <svg
+                    id="iconPause"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <rect x="6" y="4" width="4" height="16" />
+                    <rect x="14" y="4" width="4" height="16" />
+                  </svg>
+                  <svg
+                    id="iconPlay"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="hidden"
+                  >
+                    <polygon points="5,3 19,12 5,21" />
+                  </svg>
+                </button>
+                <button
+                  id="btnMute"
+                  class="w-9 h-9 flex items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors cursor-pointer"
+                  aria-label="Ativar som"
+                >
+                  <svg
+                    id="iconMuted"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polygon points="11,5 6,9 2,9 2,15 6,15 11,19" />
+                    <line x1="23" y1="9" x2="17" y2="15" />
+                    <line x1="17" y1="9" x2="23" y2="15" />
+                  </svg>
+                  <svg
+                    id="iconSound"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="hidden"
+                  >
+                    <polygon points="11,5 6,9 2,9 2,15 6,15 11,19" />
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <p
+              class="header-subtitle text-white/75 text-[0.938rem] font-normal leading-relaxed md:text-base lg:text-lg lg:max-w-[520px] 3xl:text-xl"
+            >
+              Conectamos indústria, varejo e milhões de consumidores com
+              capilaridade, tecnologia e a força de quem conhece cada região.
+            </p>
+          </div>
+
+          <!-- Formulário no header (desktop) -->
+          <div
+            class="hidden lg:flex lg:flex-col lg:justify-center lg:w-[420px] lg:flex-shrink-0 3xl:w-[460px]"
           >
-            Conectamos indústria, varejo e milhões de consumidores com
-            capilaridade, tecnologia e a força de quem conhece cada região.
-          </p>
+            <div
+              class="bg-white/[0.07] backdrop-blur-sm border border-white/10 rounded-2xl p-8 3xl:p-10"
+            >
+              <div class="contact-header text-center mb-8">
+                <h2 class="contact-title text-white text-2xl font-bold">
+                  Entre em contato
+                </h2>
+                <p class="contact-subtitle text-white/60 mt-3 text-sm">
+                  Preencha o formulário e nossa equipe entrará em contato com
+                  você.
+                </p>
+              </div>
+
+              <form class="contact-form space-y-6" id="contactForm">
+                <!-- Nome e Sobrenome -->
+                <div>
+                  <label
+                    for="name"
+                    class="block text-white/80 text-sm font-medium mb-2"
+                  >
+                    Nome e Sobrenome
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="Digite seu nome completo"
+                    class="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-300"
+                  />
+                </div>
+
+                <!-- Telefone -->
+                <div>
+                  <label
+                    for="phone"
+                    class="block text-white/80 text-sm font-medium mb-2"
+                  >
+                    Telefone
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    placeholder="(00) 00000-0000"
+                    class="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-300"
+                  />
+                </div>
+
+                <!-- CPF ou CNPJ -->
+                <div>
+                  <label
+                    for="cpfcnpj"
+                    class="block text-white/80 text-sm font-medium mb-2"
+                  >
+                    CPF ou CNPJ
+                  </label>
+                  <input
+                    type="tel"
+                    id="cpfcnpj"
+                    name="cpfcnpj"
+                    required
+                    placeholder="123.456.789-12 - 12.345.678/0001-90"
+                    class="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-300"
+                  />
+                </div>
+
+                <!-- Estado -->
+                <div>
+                  <span
+                    class="block text-white/80 text-sm font-medium mb-3 text-center"
+                  >
+                    Sou do
+                  </span>
+                  <div class="grid grid-cols-2 gap-4">
+                    <label class="state-option">
+                      <input
+                        type="radio"
+                        name="state"
+                        value="MA"
+                        required
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="px-4 py-4 bg-white/5 border border-white/20 rounded-lg text-white text-center font-medium cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-white/40 peer-checked:bg-white peer-checked:text-dark peer-checked:border-white"
+                      >
+                        MARANHÃO
+                      </div>
+                    </label>
+                    <label class="state-option">
+                      <input
+                        type="radio"
+                        name="state"
+                        value="PI"
+                        required
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="px-4 py-4 bg-white/5 border border-white/20 rounded-lg text-white text-center font-medium cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-white/40 peer-checked:bg-white peer-checked:text-dark peer-checked:border-white"
+                      >
+                        PIAUÍ
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button
+                  type="submit"
+                  class="w-full py-4 bg-white text-dark font-semibold rounded-lg hover:bg-white/90 active:scale-[0.98] transition-all duration-300 mt-8"
+                >
+                  Enviar
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </header>
 
     <!-- ==================== -->
-    <!-- CTA BUTTON           -->
-    <!-- ==================== -->
-    <div class="relative z-20">
-      <a
-        href="#contato"
-        class="cta-button opacity-0 absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#22c55e] hover:bg-[#16a34a] text-white font-bold text-lg md:text-xl lg:text-2xl px-8 py-4 md:px-12 md:py-5 lg:px-16 lg:py-6 rounded-full shadow-lg shadow-[#22c55e]/30 hover:shadow-xl hover:shadow-[#22c55e]/40 transition-all duration-300 hover:scale-105 whitespace-nowrap"
-      >
-        Quero comprar!
-      </a>
-    </div>
-
-    <!-- ==================== -->
-    <!-- QUEM SOMOS           -->
+    <!-- FORMULÁRIO MOBILE    -->
     <!-- ==================== -->
     <section
-      class="about bg-dark-light pt-24 pb-16 px-6 md:pt-28 md:pb-20 md:px-12 lg:pt-32 lg:pb-24 lg:px-20"
-      id="quem-somos"
-    >
-      <div class="about-content max-w-[800px] mx-auto lg:max-w-[900px]">
-        <h2
-          class="about-title text-white text-[1.75rem] font-extrabold leading-tight mb-5 md:text-4xl lg:text-[2.75rem]"
-        >
-          Transformamos a distribuição no Brasil
-        </h2>
-
-        <p
-          class="about-text text-white/75 text-base leading-relaxed mb-10 md:text-lg"
-        >
-          A Braveo é uma holding que reúne distribuidoras líderes regionais,
-          criando o maior ecossistema de distribuição do Norte e Nordeste. Desde
-          2021, conectamos indústria e varejo com tecnologia, governança e a
-          força de quem conhece cada canto do país.
-        </p>
-
-        <div class="about-numbers grid grid-cols-3 gap-6 lg:gap-12">
-          <div class="about-number-item text-center">
-            <span
-              class="about-number block text-white text-[2rem] font-extrabold mb-1 md:text-[2.5rem] lg:text-5xl"
-              >4.500+</span
-            >
-            <span class="about-number-label text-white/60 text-sm md:text-base"
-              >Colaboradores</span
-            >
-          </div>
-          <div class="about-number-item text-center">
-            <span
-              class="about-number block text-white text-[2rem] font-extrabold mb-1 md:text-[2.5rem] lg:text-5xl"
-              >9</span
-            >
-            <span class="about-number-label text-white/60 text-sm md:text-base"
-              >Estados atendidos</span
-            >
-          </div>
-          <div class="about-number-item text-center">
-            <span
-              class="about-number block text-white text-[2rem] font-extrabold mb-1 md:text-[2.5rem] lg:text-5xl"
-              >200k+</span
-            >
-            <span class="about-number-label text-white/60 text-sm md:text-base"
-              >Pontos de venda</span
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== -->
-    <!-- NOSSOS CLIENTES      -->
-    <!-- ==================== -->
-    <section
-      class="clients bg-dark py-16 overflow-hidden md:py-20 lg:py-24"
-      id="clientes"
-    >
-      <div
-        class="clients-header text-center px-6 mb-12 flex flex-col md:flex-row gap-2 justify-center"
-      >
-        <h2
-          class="clients-title text-white text-2xl font-bold md:text-[1.75rem] lg:text-[2rem]"
-        >
-          Parceiros que confiam na
-        </h2>
-        <img
-          src="assets/braveo-logo.png"
-          alt="braveo"
-          class="w-16 mx-auto md:mx-0"
-        />
-      </div>
-
-      <div class="carousel-wrapper w-full overflow-hidden flex justify-center">
-        <div
-          class="carousel-track flex gap-12 pl-12 w-fit animate-scroll md:gap-16 lg:gap-20"
-          id="carouselTrack"
-        >
-          <!-- Logos carregados dinamicamente via JS -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== -->
-    <!-- FORMULÁRIO CONTATO   -->
-    <!-- ==================== -->
-    <section
-      class="contact bg-dark-light py-16 px-6 md:py-20 md:px-12 lg:py-24 lg:px-20"
+      class="contact bg-dark-light py-16 px-6 md:py-20 md:px-12 lg:hidden"
       id="contato"
     >
       <div class="contact-content max-w-[600px] mx-auto">
-        <div class="contact-header text-center mb-10 lg:mb-14">
+        <div class="contact-header text-center mb-10">
           <h2
-            class="contact-title text-white text-2xl font-bold md:text-[1.75rem] lg:text-[2rem]"
+            class="contact-title text-white text-2xl font-bold md:text-[1.75rem]"
           >
             Entre em contato
           </h2>
@@ -200,19 +337,18 @@
           </p>
         </div>
 
-        <!-- Form -->
-        <form class="contact-form space-y-6" id="contactForm">
+        <form class="contact-form space-y-6" id="contactFormMobile">
           <!-- Nome e Sobrenome -->
           <div>
             <label
-              for="name"
+              for="name-mobile"
               class="block text-white/80 text-sm font-medium mb-2"
             >
               Nome e Sobrenome
             </label>
             <input
               type="text"
-              id="name"
+              id="name-mobile"
               name="name"
               required
               placeholder="Digite seu nome completo"
@@ -223,31 +359,32 @@
           <!-- Telefone -->
           <div>
             <label
-              for="phone"
+              for="phone-mobile"
               class="block text-white/80 text-sm font-medium mb-2"
             >
               Telefone
             </label>
             <input
               type="tel"
-              id="phone"
+              id="phone-mobile"
               name="phone"
               required
               placeholder="(00) 00000-0000"
               class="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-white/50 focus:bg-white/10 transition-all duration-300"
             />
           </div>
+
           <!-- CPF ou CNPJ -->
           <div>
             <label
-              for="phone"
+              for="cpfcnpj-mobile"
               class="block text-white/80 text-sm font-medium mb-2"
             >
               CPF ou CNPJ
             </label>
             <input
               type="tel"
-              id="cpfcnpj"
+              id="cpfcnpj-mobile"
               name="cpfcnpj"
               required
               placeholder="123.456.789-12 - 12.345.678/0001-90"
@@ -306,6 +443,124 @@
     </section>
 
     <!-- ==================== -->
+    <!-- DOBRA 2 - CONTEXTO   -->
+    <!-- ==================== -->
+    <section
+      class="context bg-dark-light py-16 px-6 md:py-20 md:px-12 lg:py-28 lg:px-20"
+      id="contexto"
+    >
+      <div class="max-w-[800px] mx-auto text-center">
+        <h2
+          class="text-white text-2xl font-extrabold leading-tight mb-5 md:text-3xl lg:text-[2.5rem]"
+        >
+          Crescer no varejo não é simples.
+        </h2>
+        <p
+          class="text-white/65 text-base leading-relaxed md:text-lg lg:text-xl"
+        >
+          Sem canal certo, sem escala e sem estrutura, bons produtos ficam
+          parados. Entrar no varejo exige relacionamento, logística e
+          estratégia.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== -->
+    <!-- DOBRA 3/4 - SOLUÇÃO  -->
+    <!-- ==================== -->
+    <section
+      class="solution bg-dark py-16 px-6 md:py-20 md:px-12 lg:py-28 lg:px-20"
+      id="solucao"
+    >
+      <div class="max-w-[900px] mx-auto">
+        <!-- Frase de transição -->
+        <p
+          class="text-white/50 text-lg font-medium text-center mb-10 md:text-xl lg:text-2xl lg:mb-14"
+        >
+          E é aqui que a Braveo entra.
+        </p>
+
+        <!-- Título e texto principal -->
+        <h2
+          class="about-title text-white text-[1.75rem] font-extrabold leading-tight mb-5 text-center md:text-4xl lg:text-[2.75rem]"
+        >
+          Transformamos a distribuição no Brasil
+        </h2>
+        <p
+          class="about-text text-white/70 text-base leading-relaxed mb-12 text-center max-w-[700px] mx-auto md:text-lg lg:mb-16"
+        >
+          A Braveo é uma holding que reúne distribuidoras líderes regionais,
+          criando o maior ecossistema de distribuição do Norte e Nordeste. Desde
+          2021, conectamos indústria e varejo com tecnologia, governança e a
+          força de quem conhece cada canto do país.
+        </p>
+
+        <!-- Números -->
+        <div class="about-numbers grid grid-cols-3 gap-6 lg:gap-12">
+          <div class="about-number-item text-center">
+            <span
+              class="about-number block text-white text-[2rem] font-extrabold mb-1 md:text-[2.5rem] lg:text-5xl"
+              >4.500+</span
+            >
+            <span class="about-number-label text-white/60 text-sm md:text-base"
+              >Colaboradores</span
+            >
+          </div>
+          <div class="about-number-item text-center">
+            <span
+              class="about-number block text-white text-[2rem] font-extrabold mb-1 md:text-[2.5rem] lg:text-5xl"
+              >9</span
+            >
+            <span class="about-number-label text-white/60 text-sm md:text-base"
+              >Estados atendidos</span
+            >
+          </div>
+          <div class="about-number-item text-center">
+            <span
+              class="about-number block text-white text-[2rem] font-extrabold mb-1 md:text-[2.5rem] lg:text-5xl"
+              >200k+</span
+            >
+            <span class="about-number-label text-white/60 text-sm md:text-base"
+              >Pontos de venda</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== -->
+    <!-- NOSSOS CLIENTES      -->
+    <!-- ==================== -->
+    <section
+      class="clients bg-dark py-16 overflow-hidden md:py-20 lg:py-24"
+      id="clientes"
+    >
+      <div
+        class="clients-header text-center px-6 mb-12 flex flex-col md:flex-row gap-2 justify-center"
+      >
+        <h2
+          class="clients-title text-white text-2xl font-bold md:text-[1.75rem] lg:text-[2rem]"
+        >
+          Parceiros que confiam na
+        </h2>
+        <img
+          src="assets/BRAVEO.svg"
+          alt="braveo"
+          class="w-24 mx-auto md:mx-0"
+        />
+      </div>
+
+      <div class="carousel-wrapper w-full overflow-hidden flex justify-center">
+        <div
+          class="carousel-track flex gap-12 pl-12 w-fit animate-scroll md:gap-16 lg:gap-20"
+          id="carouselTrack"
+        >
+          <!-- Logos carregados dinamicamente via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== -->
     <!-- NOSSA ESTRUTURA      -->
     <!-- ==================== -->
     <section
@@ -317,7 +572,7 @@
           <h2
             class="structure-title text-white text-2xl font-bold md:text-[1.75rem] lg:text-[2rem]"
           >
-            Centros de distribuição por todo o Norte e Nordeste
+            Centros de distribuição por Piauí e Maranhão
           </h2>
         </div>
 
@@ -332,7 +587,7 @@
               <!-- Slide 1 -->
               <div class="slider-slide w-full flex-shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&h=600&fit=crop"
+                  src="assets/dep4.jpeg"
                   alt="Centro de Distribuição 1"
                   class="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-xl"
                 />
@@ -340,7 +595,7 @@
               <!-- Slide 2 -->
               <div class="slider-slide w-full flex-shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&h=600&fit=crop"
+                  src="assets/dep2.jpeg"
                   alt="Centro de Distribuição 2"
                   class="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-xl"
                 />
@@ -348,7 +603,7 @@
               <!-- Slide 3 -->
               <div class="slider-slide w-full flex-shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&h=600&fit=crop"
+                  src="assets/dep3.jpeg"
                   alt="Centro de Distribuição 3"
                   class="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-xl"
                 />
@@ -356,7 +611,7 @@
               <!-- Slide 4 -->
               <div class="slider-slide w-full flex-shrink-0">
                 <img
-                  src="https://images.unsplash.com/photo-1601598851547-4302969d0614?w=1200&h=600&fit=crop"
+                  src="assets/dep1.jpeg"
                   alt="Centro de Distribuição 4"
                   class="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-xl"
                 />
@@ -448,9 +703,9 @@
             Conheça as empresas do grupo
           </h2>
           <img
-            src="assets/braveo-logo.png"
+            src="assets/BRAVEO.svg"
             alt="braveo"
-            class="w-16 mx-auto md:mx-0"
+            class="w-24 mx-auto md:mx-0"
           />
         </div>
 
@@ -537,43 +792,84 @@
     </section>
 
     <!-- ==================== -->
-    <!-- VÍDEO INSTITUCIONAL  -->
+    <!-- DOBRA 5 - BENEFÍCIOS -->
     <!-- ==================== -->
     <section
-      class="video-section bg-dark-light py-16 px-6 md:py-20 md:px-12 lg:py-24 lg:px-20"
-      id="video"
+      class="benefits bg-dark-light py-16 px-6 md:py-20 md:px-12 lg:py-28 lg:px-20"
+      id="beneficios"
     >
-      <div class="video-content max-w-[1000px] mx-auto">
-        <div class="video-header text-center mb-10 lg:mb-14">
-          <h2
-            class="video-title text-white text-2xl font-bold md:text-[1.75rem] lg:text-[2rem]"
-          >
-            Assista ao nosso vídeo institucional
-          </h2>
-        </div>
-
-        <!-- Video Container -->
-        <div
-          class="video-wrapper relative aspect-video rounded-xl overflow-hidden bg-neutral-800"
+      <div class="max-w-[640px] mx-auto lg:max-w-[800px]">
+        <h2
+          class="text-white text-2xl font-extrabold leading-tight mb-12 text-center md:text-3xl lg:text-[2.5rem] lg:mb-16"
         >
-          <iframe
-            class="absolute inset-0 w-full h-full border-0"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-            title="Vídeo Institucional Braveo"
-            allow="
-              accelerometer;
-              autoplay;
-              clipboard-write;
-              encrypted-media;
-              gyroscope;
-              picture-in-picture;
-              web-share;
-            "
-            allowfullscreen
-          ></iframe>
+          O que muda depois do contato?
+        </h2>
+
+        <div class="space-y-0">
+          <div class="lg:w-[60%] lg:ml-auto lg:text-left py-8 lg:py-10">
+            <h3 class="text-white text-lg font-bold mb-2 md:text-xl">
+              Mais alcance
+            </h3>
+            <p class="text-white/55 text-sm leading-relaxed md:text-base">
+              Seu produto chega a milhares de pontos de venda no Norte e
+              Nordeste com a estrutura que só a Braveo oferece.
+            </p>
+          </div>
+
+          <div class="h-px bg-white/10 lg:w-[80%] lg:mx-auto"></div>
+
+          <div class="lg:w-[60%] lg:mr-auto lg:text-left py-8 lg:py-10">
+            <h3 class="text-white text-lg font-bold mb-2 md:text-xl">
+              Menos tentativa e erro
+            </h3>
+            <p class="text-white/55 text-sm leading-relaxed md:text-base">
+              Distribuidoras experientes, com décadas de mercado, guiam a
+              entrada nos canais certos desde o primeiro dia.
+            </p>
+          </div>
+
+          <div class="h-px bg-white/10 lg:w-[80%] lg:mx-auto"></div>
+
+          <div class="lg:w-[60%] lg:ml-auto lg:text-left py-8 lg:py-10">
+            <h3 class="text-white text-lg font-bold mb-2 md:text-xl">
+              Crescimento estruturado
+            </h3>
+            <p class="text-white/55 text-sm leading-relaxed md:text-base">
+              Logística integrada, governança e tecnologia para escalar suas
+              vendas com previsibilidade.
+            </p>
+          </div>
+
+          <div class="h-px bg-white/10 lg:w-[80%] lg:mx-auto"></div>
+
+          <div class="lg:w-[60%] lg:mr-auto lg:text-left py-8 lg:py-10">
+            <h3 class="text-white text-lg font-bold mb-2 md:text-xl">
+              Acesso a canais certos
+            </h3>
+            <p class="text-white/55 text-sm leading-relaxed md:text-base">
+              Relacionamento consolidado com o varejo regional, do pequeno
+              mercado às grandes redes.
+            </p>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ==================== -->
+    <!-- FOOTER               -->
+    <!-- ==================== -->
+    <footer
+      class="bg-dark border-t border-white/10 py-8 px-6 md:px-12 lg:px-20"
+    >
+      <div
+        class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4"
+      >
+        <img src="assets/braveo-logo.png" alt="Braveo" class="w-24 md:w-28" />
+        <p class="text-white/40 text-xs md:text-sm text-center">
+          &copy; 2026 Braveo. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>

@@ -108,14 +108,6 @@ btnPlayPause?.addEventListener("click", () => {
     heroVideo.play();
     iconPause.classList.remove("hidden");
     iconPlay.classList.add("hidden");
-
-    // GTM dataLayer: Track video play
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "video_play",
-      video_name: "Video Institucional Braveo",
-      video_action: "play",
-    });
   } else {
     heroVideo.pause();
     iconPause.classList.add("hidden");
@@ -127,16 +119,6 @@ btnMute?.addEventListener("click", () => {
   heroVideo.muted = !heroVideo.muted;
   iconMuted.classList.toggle("hidden");
   iconSound.classList.toggle("hidden");
-
-  // GTM dataLayer: Track unmute (engajamento forte)
-  if (!heroVideo.muted) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "video_unmute",
-      video_name: "Video Institucional Braveo",
-      video_action: "unmute",
-    });
-  }
 });
 
 const tl = gsap.timeline();
@@ -327,16 +309,6 @@ gsap.from("#beneficios h2", {
   scrollTrigger: {
     trigger: "#beneficios",
     start: "top 80%",
-    onEnter: () => {
-      // GTM dataLayer: ViewContent quando usuário chega na seção de benefícios
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: "view_content",
-        content_name: "Seção Benefícios",
-        content_category: "Landing Page Engagement",
-      });
-    },
-    once: true,
   },
   opacity: 0,
   y: 30,
@@ -601,17 +573,6 @@ function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
     }
 
     const tipoDocumento = cpfCnpj.length === 11 ? "cpf" : "cnpj";
-
-    // GTM dataLayer: Evento quando clica no botão Enviar (antes de processar)
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "initiate_checkout",
-      content_name: "Formulário de Contato",
-      content_category: "Lead Form",
-      lead_type: tipoDocumento === "cnpj" ? "B2B" : "B2C",
-      state: state,
-    });
-
     const ENDPOINT_PIAUI =
       "https://script.google.com/macros/s/AKfycbzeyI62xPEwHIxI3wfc9yT6jaFTY8l2EMSH2tJ5JkBnkNEJj5DKE-EAEP2euVKc2hBB4Q/exec";
 
@@ -645,18 +606,6 @@ function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
         }),
       });
 
-      // GTM dataLayer: LEAD - Evento principal quando formulário é enviado com sucesso
-      window.dataLayer.push({
-        event: "generate_lead",
-        content_name: "Formulário Braveo",
-        content_category: "B2B Lead",
-        lead_status: "completed",
-        lead_type: tipoDocumento === "cnpj" ? "B2B" : "B2C",
-        state: state,
-        form_name: "contact_form",
-        lead_source: "landing_page",
-      });
-
       submitBtn.textContent = "✓ Enviado!";
       form.reset();
 
@@ -668,15 +617,6 @@ function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
       const mensagem = encodeURIComponent(
         "Olá! Venho do site e gostaria de mais informações sobre a BRAVEO.",
       );
-
-      // GTM dataLayer: Track WhatsApp click
-      window.dataLayer.push({
-        event: "whatsapp_click",
-        content_name: "Botão WhatsApp",
-        state: state,
-        click_context: "post_form_submission",
-      });
-
       window.open(`https://wa.me/${whatsappNumber}?text=${mensagem}`);
     } catch (erro) {
       console.error("Erro ao enviar:", erro);
@@ -699,62 +639,3 @@ if (contactFormMobile && phoneInputMobile && cpfCnpjInputMobile) {
     cpfCnpjInputMobile,
   );
 }
-
-// ==================== //
-// SCROLL DEPTH TRACKING //
-// ==================== //
-
-let scrollDepthTracked = {
-  25: false,
-  50: false,
-  75: false,
-  90: false,
-};
-
-window.addEventListener("scroll", () => {
-  const scrollPercent =
-    (window.scrollY /
-      (document.documentElement.scrollHeight - window.innerHeight)) *
-    100;
-
-  Object.keys(scrollDepthTracked).forEach((depth) => {
-    if (scrollPercent >= depth && !scrollDepthTracked[depth]) {
-      scrollDepthTracked[depth] = true;
-
-      // GTM dataLayer: Scroll depth
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: "scroll_depth",
-        scroll_depth: depth + "%",
-        page_location: window.location.pathname,
-      });
-    }
-  });
-});
-
-// ==================== //
-// TIME ON PAGE TRACKING //
-// ==================== //
-
-let timeOnPage = 0;
-const timeIntervals = [30, 60, 120, 300]; // 30s, 1min, 2min, 5min
-let trackedIntervals = new Set();
-
-setInterval(() => {
-  timeOnPage++;
-
-  timeIntervals.forEach((interval) => {
-    if (timeOnPage === interval && !trackedIntervals.has(interval)) {
-      trackedIntervals.add(interval);
-
-      // GTM dataLayer: Time on page
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: "time_on_page",
-        time_duration: interval,
-        time_duration_formatted: interval + "s",
-        page_location: window.location.pathname,
-      });
-    }
-  });
-}, 1000);
