@@ -362,8 +362,9 @@ document.querySelectorAll("#beneficios .space-y-0 > div").forEach((el) => {
 // Animação da seção Contato (mobile)
 gsap.from(".contact-title", {
   scrollTrigger: {
-    trigger: ".contact",
-    start: "top 80%",
+    trigger: ".contact-header",
+    start: "top 95%",
+    once: true,
   },
   opacity: 0,
   y: 30,
@@ -372,8 +373,9 @@ gsap.from(".contact-title", {
 
 gsap.from(".contact-subtitle", {
   scrollTrigger: {
-    trigger: ".contact",
-    start: "top 80%",
+    trigger: ".contact-header",
+    start: "top 95%",
+    once: true,
   },
   opacity: 0,
   y: 20,
@@ -612,17 +614,10 @@ function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
       state: state,
     });
 
-    const ENDPOINT_PIAUI =
-      "https://script.google.com/macros/s/AKfycbzeyI62xPEwHIxI3wfc9yT6jaFTY8l2EMSH2tJ5JkBnkNEJj5DKE-EAEP2euVKc2hBB4Q/exec";
-
-    const ENDPOINT_MARANHAO =
-      "https://script.google.com/macros/s/AKfycbwB7RHe0JMtcG8vYI8ZCbjjmdXhVYWKmPDZnr3Sr9w1weOrTjjID4lWotM6wwqu63el/exec";
+    const ENDPOINT = "https://script.google.com/macros/s/AKfycbzeyI62xPEwHIxI3wfc9yT6jaFTY8l2EMSH2tJ5JkBnkNEJj5DKE-EAEP2euVKc2hBB4Q/exec";
 
     const NUMERO_MARANHAO = "+558695331294";
     const NUMERO_PIAUI = "+558694271798";
-
-    const ENDPOINT =
-      state.toLowerCase() === "ma" ? ENDPOINT_MARANHAO : ENDPOINT_PIAUI;
 
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
