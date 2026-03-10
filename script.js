@@ -561,6 +561,18 @@ cpfCnpjInputMobile?.addEventListener("input", (e) => {
   e.target.value = maskCpfCnpj(e.target.value);
 });
 
+// Captura UTMs da URL
+function getUTMs() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source:   params.get("utm_source")   || "",
+    utm_medium:   params.get("utm_medium")   || "",
+    utm_campaign: params.get("utm_campaign") || "",
+    utm_content:  params.get("utm_content")  || "",
+    utm_term:     params.get("utm_term")     || "",
+  };
+}
+
 // Handler de submit compartilhado
 function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
   form.addEventListener("submit", async (e) => {
@@ -570,6 +582,7 @@ function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
     const phone = phoneEl.value.replace(/\D/g, "");
     const cpfCnpj = cpfCnpjEl.value.replace(/\D/g, "");
     const state = form.querySelector('input[name="state"]:checked')?.value;
+    const utms = getUTMs();
 
     // Validações
     if (name.length < 3) {
@@ -614,7 +627,8 @@ function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
       state: state,
     });
 
-    const ENDPOINT = "https://script.google.com/macros/s/AKfycbzeyI62xPEwHIxI3wfc9yT6jaFTY8l2EMSH2tJ5JkBnkNEJj5DKE-EAEP2euVKc2hBB4Q/exec";
+    const ENDPOINT =
+      "https://script.google.com/macros/s/AKfycbxu9fubUQJAekmnmEbvEfuXofW7PEAJ18unuUwyxz-oQ56rF513JSuTihPqq3we77F4Fg/exec";
 
     const NUMERO_MARANHAO = "+558695331294";
     const NUMERO_PIAUI = "+558694271798";
@@ -637,6 +651,7 @@ function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
           documento: cpfCnpj,
           tipoDocumento,
           estado: state,
+          ...utms,
         }),
       });
 
@@ -652,16 +667,26 @@ function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
         lead_source: "landing_page",
       });
 
-      submitBtn.textContent = "✓ Enviado!";
-      form.reset();
-
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
+      const successDiv = document.createElement("div");
+      successDiv.className =
+        "flex flex-col items-center justify-center text-center py-10 px-6 gap-5";
+      successDiv.innerHTML = `
+        <div class="w-14 h-14 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div class="space-y-2">
+          <p class="text-white text-xl font-bold">Formulário enviado!</p>
+          <p class="text-white/60 text-sm leading-relaxed">Entraremos em contato em breve.</p>
+        </div>
+      `;
+      form.replaceWith(successDiv);
 
       const whatsappNumber =
         state.toLowerCase() === "ma" ? NUMERO_MARANHAO : NUMERO_PIAUI;
       const mensagem = encodeURIComponent(
-        "Olá! Venho do site e gostaria de mais informações sobre a BRAVEO.",
+        "Olá! Venho do site e gostaria de mais informações sobre os serviços da BRAVEO/Rio Piranhas.",
       );
 
       // GTM dataLayer: Track WhatsApp click
@@ -672,7 +697,7 @@ function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
         click_context: "post_form_submission",
       });
 
-      window.open(`https://wa.me/${whatsappNumber}?text=${mensagem}`);
+      globalThis.location.href = `https://wa.me/${whatsappNumber}?text=${mensagem}`;
     } catch (erro) {
       console.error("Erro ao enviar:", erro);
       alert("Erro ao enviar. Tente novamente.");
