@@ -630,7 +630,7 @@ function handleFormSubmit(form, nameId, phoneEl, cpfCnpjEl) {
     const ENDPOINT =
       "https://script.google.com/macros/s/AKfycbxu9fubUQJAekmnmEbvEfuXofW7PEAJ18unuUwyxz-oQ56rF513JSuTihPqq3we77F4Fg/exec";
 
-    const NUMERO_MARANHAO = "+558695331294";
+    const NUMERO_MARANHAO = "+558694271798";
     const NUMERO_PIAUI = "+558694271798";
 
     const submitBtn = form.querySelector('button[type="submit"]');
